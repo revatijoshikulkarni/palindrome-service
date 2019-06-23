@@ -22,6 +22,7 @@ import javax.validation.Valid;
 public class PalindromeController {
 
     private final Palindrome palindrome;
+    private final Application kafkaApplication;
 
     @ApiOperation(value = "Validates the message and publishes it on the topic",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -42,6 +43,7 @@ public class PalindromeController {
     {
         palindrome.setTimestamp(content.getTimestamp());
         palindrome.setContent(content.getContent());
+        kafkaApplication.sendKafkaMessage(palindrome);
         return ResponseEntity.ok("Valid message");
     }
 
