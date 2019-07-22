@@ -1,0 +1,68 @@
+# Setup Basic macros and known server names for reuse in scheduler files
+spring:
+  sleuth:
+    trace-id128: true
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: palindrome
+          group: ${spring.application.name}
+          contentType: application/json
+        input:
+          destination: palindrome
+          group: ${spring.application.name}
+          contentType: application/json
+        kafka:
+          bindings:
+            input:
+              consumer:
+                enableDlq: true
+      kafka:
+        binder:
+          brokers: ${kafka.brokers}
+          autoCreateTopics: ${kafka.autoCreateTopics}
+          autoAddPartitions: ${kafka.autoAddPartitions}
+          minPartitionCount: ${kafka.minPartitionCount}
+    config:
+      fail-fast: false
+      uri: http://localhost:8888
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      write-dates-as-timestamps: false
+eureka:
+  client:
+    enabled: false
+# Actuator info
+info:
+  project:
+    name: "@project.name@"
+    description: "@project.description@"
+    groupId: "@project.groupId@"
+    artifactId: "@project.artifactId@"
+    version: "@project.version@"
+    owner: Flomdidumteam <Flomdidumteam@tdc.meow>
+  build:
+    maven: "@maven.version@"
+    time: "@maven.build.timestamp@"
+    git:
+      commit: "@git.commit.id@"
+      describe: "@git.commit.id.describe@"
+    system:
+      user: "@user.name@"
+      os: "@os.name@/@os.arch@"
+    java:
+      runtime: "@java.runtime.name@"
+      vm: "@java.vm.name@"
+      version: "@java.version@"
+  runtime:
+    spring:
+      profile: ${spring.profiles.active:default}
+    system:
+      user: ${user.name}
+      os: ${os.name}/${os.arch}
+    java:
+      runtime: ${java.runtime.name}
+      vm: ${java.vm.name}
+      version: ${java.version}

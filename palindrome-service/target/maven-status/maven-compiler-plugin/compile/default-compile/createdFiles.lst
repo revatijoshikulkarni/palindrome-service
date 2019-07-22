@@ -1,3 +1,6 @@
-palindrome\Application.class
+palindrome\kafka\PalindromeSendService.class
+palindrome\kafka\PalindromeListener.class
+palindrome\Palindrome$PalindromeBuilder.class
 palindrome\Palindrome.class
 palindrome\PalindromeController.class
+palindrome\Application.class

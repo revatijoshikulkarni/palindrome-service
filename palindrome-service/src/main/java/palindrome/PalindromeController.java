@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import palindrome.kafka.PalindromeSendService;
 
 import javax.validation.Valid;
 
@@ -22,7 +23,8 @@ import javax.validation.Valid;
 public class PalindromeController {
 
     private final Palindrome palindrome;
-    private final Application kafkaApplication;
+    //private final Application kafkaApplication;
+    private final PalindromeSendService service;
 
     @ApiOperation(value = "Validates the message and publishes it on the topic",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -37,14 +39,20 @@ public class PalindromeController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<String> sendMessage(
+    public void sendMessage(
             @ApiParam(value = "Message content", required = true)
             @Valid @RequestBody Palindrome content)
     {
         palindrome.setTimestamp(content.getTimestamp());
         palindrome.setContent(content.getContent());
-        kafkaApplication.sendKafkaMessage(palindrome);
-        return ResponseEntity.ok("Valid message");
+        //kafkaApplication.sendKafkaMessage(palindrome);
+        //service.send(palindrome);
+        Palindrome palindromeMessage = Palindrome.builder()
+                .content(content.getContent())
+                .timestamp(content.getTimestamp())
+                .build();
+        service.send(palindromeMessage);
+        //return ResponseEntity.ok("Valid Message");
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -1,3 +1,4 @@
+/*
 package palindrome.kafka;
 
 
@@ -33,3 +34,4 @@ public class KafkaTopicConfig {
         return new NewTopic(topicName, 1, (short) 1);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package palindrome.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -51,3 +52,4 @@ public class KafkaConsumerConfig {
         return factory;
     }
 }
+*/

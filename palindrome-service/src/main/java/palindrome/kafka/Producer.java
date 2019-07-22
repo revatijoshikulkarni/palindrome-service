@@ -1,5 +1,7 @@
+/*
 package palindrome.kafka;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import palindrome.Palindrome;
 
 @ComponentScan
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class Producer {
 
     @Value(value = "${message.topic.name}")
@@ -47,3 +50,4 @@ public class Producer {
         });
     }
 }
+*/

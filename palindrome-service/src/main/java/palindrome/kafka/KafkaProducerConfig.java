@@ -1,3 +1,4 @@
+/*
 package palindrome.kafka;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -42,3 +43,4 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(palindromeProducerFactory());
     }
 }
+*/

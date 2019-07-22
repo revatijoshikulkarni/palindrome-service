@@ -1,3 +1,8 @@
-C:\palidrome-send-service\complete\src\main\java\palindrome\PalindromeController.java
-C:\palidrome-send-service\complete\src\main\java\palindrome\Application.java
-C:\palidrome-send-service\complete\src\main\java\palindrome\Palindrome.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\kafka\KafkaProducerConfig.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\kafka\KafkaTopicConfig.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\kafka\Consumer.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\PalindromeController.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\Application.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\kafka\KafkaConsumerConfig.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\kafka\Producer.java
+C:\palindrome-service\palindrome-service\src\main\java\palindrome\Palindrome.java
