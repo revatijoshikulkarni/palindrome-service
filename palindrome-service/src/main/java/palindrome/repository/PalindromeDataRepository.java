@@ -9,4 +9,6 @@ public interface PalindromeDataRepository extends CrudRepository<PalindromeData,
     Optional<PalindromeData> findById(Integer integer);
     @Override
     <S extends PalindromeData> S save(S s);
+    @Override
+    Iterable<PalindromeData> findAll();
 }

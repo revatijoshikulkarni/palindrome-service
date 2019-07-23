@@ -23,7 +23,6 @@ import javax.validation.Valid;
 public class PalindromeController {
 
     private final Palindrome palindrome;
-    //private final Application kafkaApplication;
     private final PalindromeSendService service;
 
     @ApiOperation(value = "Validates the message and publishes it on the topic",
