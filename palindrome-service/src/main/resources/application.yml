@@ -6,11 +6,11 @@ spring:
     stream:
       bindings:
         output:
-          destination: palindrome
+          destination: ${output.destination}
           group: ${spring.application.name}
           contentType: application/json
         input:
-          destination: palindrome
+          destination: ${input.destination}
           group: ${spring.application.name}
           contentType: application/json
         kafka:
@@ -31,6 +31,32 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
       write-dates-as-timestamps: false
+  jooq:
+      sql-dialect: postgres
+  datasource:
+      url: ${datasource.url}
+      username: ${datasource.username}
+      password: ${datasource.password}
+      driverClassName: org.postgresql.Driver
+      type: org.springframework.jdbc.datasource.DriverManagerDataSource
+      platform: ${datasource.platform}
+      initialization-mode: ${datasource.initialization-mode}
+      schema: ${datasource.schema}
+      continue-on-error: ${datasource.continue-on-error}
+  jpa:
+    database: ${jpa.database}
+    database-platform: ${jpa.database-platform}
+    hibernate:
+      ddl-auto: ${jpa.hibernate.ddl-auto}
+    generate-ddl: ${jpa.generate-ddl}
+    properties:
+          hibernate:
+            formatSql: true
+            jdbc:
+              lob:
+                non-contextual-creation: ${jpa.properties.hibernate.jdbc.lob.non_contextual_creation}
+    show-sql: ${jpa.show-sql}
+
 eureka:
   client:
     enabled: false
