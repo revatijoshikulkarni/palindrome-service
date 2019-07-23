@@ -2,19 +2,15 @@ package palindrome.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-import palindrome.Palindrome;
+import palindrome.domain.Palindrome;
 import palindrome.repository.PalindromeData;
 import palindrome.repository.PalindromeDataRepository;
 
-import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 
 @Component

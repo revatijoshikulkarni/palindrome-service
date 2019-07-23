@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.kafka.annotation.KafkaListener;
-import palindrome.Palindrome;
+import palindrome.domain.Palindrome;
 
 import java.util.concurrent.CountDownLatch;
 

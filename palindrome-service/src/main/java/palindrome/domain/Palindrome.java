@@ -1,4 +1,4 @@
-package palindrome;
+package palindrome.domain;
 
 
 import lombok.*;

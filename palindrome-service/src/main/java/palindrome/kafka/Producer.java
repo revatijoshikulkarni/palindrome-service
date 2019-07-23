@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.beans.factory.annotation.Value;
-import palindrome.Palindrome;
+import palindrome.domain.Palindrome;
 
 @ComponentScan
 //@RequiredArgsConstructor(onConstructor = @__(@Autowired))
