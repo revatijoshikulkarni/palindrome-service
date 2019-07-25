@@ -53,8 +53,8 @@
     <schema id="12" parent="3" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2019-07-23.14:14:45.342</IntrospectionTimestamp>
-      <IntrospectionStateNumber>569</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2019-07-23.20:44:56.567</IntrospectionTimestamp>
+      <IntrospectionStateNumber>578</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -109,7 +109,7 @@
     </sequence>
     <table id="20" parent="12" name="palindromedata">
       <ObjectId>24577</ObjectId>
-      <StateNumber>567</StateNumber>
+      <StateNumber>578</StateNumber>
     </table>
     <column id="21" parent="20" name="id">
       <Position>1</Position>
@@ -122,9 +122,9 @@
     </column>
     <column id="22" parent="20" name="payload">
       <Position>2</Position>
-      <DataType>varchar|0s</DataType>
-      <StateNumber>553</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>jsonb|0s</DataType>
+      <StateNumber>576</StateNumber>
+      <TypeId>3802</TypeId>
     </column>
     <column id="23" parent="20" name="created_timestamp">
       <Position>3</Position>
@@ -133,17 +133,23 @@
       <StateNumber>565</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="24" parent="20" name="palindromedata_id_uindex">
+    <column id="24" parent="20" name="payloadtext">
+      <Position>4</Position>
+      <DataType>json|0s</DataType>
+      <StateNumber>578</StateNumber>
+      <TypeId>114</TypeId>
+    </column>
+    <index id="25" parent="20" name="palindromedata_id_uindex">
       <ObjectId>24630</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="25" parent="20" name="palindromedata_pkey">
+    <index id="26" parent="20" name="palindromedata_pkey">
       <ObjectId>24628</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="26" parent="20" name="palindromedata_pkey">
+    <key id="27" parent="20" name="palindromedata_pkey">
       <ObjectId>24629</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>palindromedata_pkey</UnderlyingIndexName>

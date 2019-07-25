@@ -26,7 +26,8 @@ public class PalindromeListener {
 
         log.info("Received Palindrome : {}", palindromeMessage);
         log.info(" Saving payload in the database");
-        palindromeData.setPayLoad(palindromeMessage.toString());
+        palindromeData.setPayLoad(palindromeMessage);
+        palindromeData.setPayLoadText(palindromeMessage.toString());
         palindromeData.setCreatedTimestamp(OffsetDateTime.now().toString());
         repository.save(palindromeData);
         log.info("Payload saved");

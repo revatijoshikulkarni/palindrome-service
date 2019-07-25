@@ -29,7 +29,7 @@ public class PalindromeController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully attached the file"),
+            @ApiResponse(code = 200, message = "Successfully send the message"),
             @ApiResponse(code = 400, message = "Invalid request")
     })
     @RequestMapping(
@@ -52,6 +52,22 @@ public class PalindromeController {
                 .build();
         service.send(palindromeMessage);
         //return ResponseEntity.ok("Valid Message");
+    }
+
+    @ApiOperation(value = "Fetches the messages from database and produces JSON value",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved the message"),
+            @ApiResponse(code = 400, message = "Invalid request")
+    })
+    @RequestMapping(
+            value = "/getenrichedpalindrome",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public void getMessage()
+    {
+
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

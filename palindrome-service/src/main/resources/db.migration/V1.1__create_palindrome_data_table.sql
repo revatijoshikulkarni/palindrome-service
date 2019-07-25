@@ -5,7 +5,7 @@ create table palindromedata
   id                integer                 not null
     constraint palindromedata_pkey
     primary key,
-  payload           varchar,
+  payload           jsonb,
   created_timestamp varchar not null
 );
 
