@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      -  postgresql-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: rw_dev
+      POSTGRES_USER: rw_dev
+      POSTGRES_DB: palindrome
+    ports:
+      - "5432:5432"
+volumes:
+  postgresql-volume:
+    external: true
