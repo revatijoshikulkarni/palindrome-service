@@ -1,6 +1,7 @@
 package palindrome.rest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,6 +25,7 @@ public class PalindromeController {
 
     private final Palindrome palindrome;
     private final PalindromeSendService service;
+    private final PalindromeHelper palindromeHelper;
 
     @ApiOperation(value = "Validates the message and publishes it on the topic",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -65,9 +67,9 @@ public class PalindromeController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void getMessage()
+    public List<Palindrome> getMessage()
     {
-
+        return palindromeHelper.getUpdatedPalindromeData();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

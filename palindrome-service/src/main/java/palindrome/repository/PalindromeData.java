@@ -2,19 +2,17 @@ package palindrome.repository;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import lombok.*;
+import org.hibernate.annotations.Type;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import palindrome.domain.Palindrome;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Component
@@ -32,8 +30,10 @@ public class PalindromeData implements Serializable {
     private Integer id;
 
     @JsonInclude
-    @Column(name = "payload")
-    private Palindrome payLoad;
+    @Type(type = "jsonb")
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "payload", columnDefinition = "jsonb")
+    private JSONObject payLoad;
 
     @JsonIgnoreProperties
     @Column(name = "created_timestamp")

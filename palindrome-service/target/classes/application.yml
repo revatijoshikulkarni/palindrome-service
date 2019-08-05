@@ -54,7 +54,7 @@ spring:
             formatSql: true
             jdbc:
               lob:
-                non-contextual-creation: ${jpa.properties.hibernate.jdbc.lob.non_contextual_creation}
+                non-contextual-creation: true
     show-sql: ${jpa.show-sql}
 
 eureka:
@@ -72,7 +72,7 @@ info:
     owner: Flomdidumteam <Flomdidumteam@tdc.meow>
   build:
     maven: "@maven.version@"
-    time: "20190728-2053"
+    time: "20190804-1803"
     git:
       commit: "@git.commit.id@"
       describe: "@git.commit.id.describe@"
