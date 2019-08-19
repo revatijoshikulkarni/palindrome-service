@@ -1,84 +1,68 @@
 package palindrome.rest;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import palindrome.domain.Palindrome;
-import palindrome.domain.PalindromeAttribute;
 import palindrome.repository.PalindromeData;
 import palindrome.repository.PalindromeDataRepository;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
+import java.util.*;
 
+@Slf4j
 @Component
 @AllArgsConstructor
 public class PalindromeHelper {
     private final PalindromeData palindromeData;
     private final PalindromeDataRepository repository;
-    private final PalindromeAttribute palindromeAttribute;
 
-    public void readPalindromeData(){
+    public List<Palindrome> getUpdatedPalindromeData(){
         Iterable<PalindromeData> data = repository.findAll();
+        List<Palindrome> updatedPalindromeList = new ArrayList<>();
         //Palindrome palindrome
         data.forEach(palindromeData1 -> {
-            Palindrome palindrome = palindromeData1.getPayLoad();
-            addPalindromeLength(palindrome);
-        });
-    }
+            //JSONObject object = palindromeData1.getPayLoad();
+            try {
+               Palindrome palindrome = new ObjectMapper()
+                       .readValue(palindromeData1.getPayLoad(),Palindrome.class);
+                        //.readerFor(Palindrome.class)
+                        //.readValue(palindromeData1.getPayLoad());
+                int longestPalindromeLength = longestPalindromesIn(palindrome.getContent());
+                palindrome.setLength(longestPalindromeLength);
+                updatedPalindromeList.add(palindrome);
 
-    private void addPalindromeLength(Palindrome palindrome){
-
-    }
-
-    private PalindromeAttribute calculateLongestPalindromeString(String palindromeString){
-        int maxLength = 1;
-
-        int start = 0;
-        int len = palindromeString.length();
-
-        int low, high;
-
-        // One by one consider every character as center
-        // point of even and length palindromes
-        for (int i = 1; i < len; ++i)
-        {
-            // Find the longest even length palindrome with
-            // center points as i-1 and i.
-            low = i - 1;
-            high = i;
-            while (low >= 0 && high < len
-                    && palindromeString.charAt(low) == palindromeString.charAt(high)) {
-                if (high - low + 1 > maxLength) {
-                    start = low;
-                    maxLength = high - low + 1;
-                }
-                --low;
-                ++high;
+            }catch(Exception e){
+                log.error(" Unable to get palindrome data", e.getMessage());
             }
 
-            // Find the longest odd length palindrome with
-            // center point as i
-            low = i - 1;
-            high = i + 1;
-            while (low >= 0 && high < len
-                    && palindromeString.charAt(low) == palindromeString.charAt(high)) {
-                if (high - low + 1 > maxLength) {
-                    start = low;
-                    maxLength = high - low + 1;
+        });
+        return updatedPalindromeList;
+    }
+
+    private int longestPalindromesIn(String input) {
+        int longest = -1;
+        for (int start = 0; start <= input.length(); start++) {
+            for (int end = start; end <= input.length(); end++) {
+                String currentSubstring = input.substring(start, end);
+                if (currentSubstring.length() >= longest) {
+                    if (isPalindrome(currentSubstring)) {
+                        if (currentSubstring.length() > longest) {
+                            longest = currentSubstring.length();
+                        }
+                    }
                 }
-                --low;
-                ++high;
             }
         }
-
-        palindromeAttribute.builder()
-                .palindromeLongestLength(maxLength)
-                .palindromeLongestSubString(palindromeString.substring(start,start+maxLength-1));
-        return palindromeAttribute;
-
+        return longest;
     }
+
+    private boolean isPalindrome(String candidate) {
+        // the following is the easy way of reversing a string;
+        // you may use your own code instead if you prefer
+        StringBuilder reverse = new StringBuilder(candidate);
+        reverse.reverse();
+        return candidate.equals(reverse.toString());
+    }
+
 }

@@ -54,7 +54,7 @@ spring:
             formatSql: true
             jdbc:
               lob:
-                non-contextual-creation: ${jpa.properties.hibernate.jdbc.lob.non_contextual_creation}
+                non-contextual-creation: true
     show-sql: ${jpa.show-sql}
 
 eureka:

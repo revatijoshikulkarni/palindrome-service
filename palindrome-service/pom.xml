@@ -159,16 +159,18 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.11.11</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>2.1.6.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.5.7</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 
@@ -201,42 +203,6 @@
                             <mainClass>palindrome.Application</mainClass>
                         </manifest>
                     </archive>
-                </configuration>
-            </plugin>
-
-            <!-- JOOQ Code Generation -->
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.11.11</version>
-                <executions>
-                    <execution>
-                        <id>jooq-codegen</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jdbc>
-                        <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://0.0.0.0:5432/palindrome</url>
-                        <user>rw_dev</user>
-                        <password>rw_dev</password>
-                    </jdbc>
-                    <generator>
-                        <database>
-                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
-                            <includes>.*</includes>
-                            <excludes>flyway_schema_history</excludes>
-                            <inputSchema>public</inputSchema>
-                        </database>
-                        <target>
-                            <packageName>palindrome.db.jooq</packageName>
-                            <directory>src/main/java</directory>
-                        </target>
-                    </generator>
                 </configuration>
             </plugin>
         </plugins>
