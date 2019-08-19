@@ -53,8 +53,8 @@
     <schema id="12" parent="3" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2019-07-23.20:44:56.567</IntrospectionTimestamp>
-      <IntrospectionStateNumber>578</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2019-08-18.18:06:03.902</IntrospectionTimestamp>
+      <IntrospectionStateNumber>602</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -101,56 +101,50 @@
       <Type>index</Type>
     </access-method>
     <sequence id="19" parent="12" name="palindromedata_id_seq">
-      <ObjectId>24639</ObjectId>
-      <StateNumber>568</StateNumber>
+      <ObjectId>24665</ObjectId>
+      <StateNumber>582</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
     </sequence>
     <table id="20" parent="12" name="palindromedata">
-      <ObjectId>24577</ObjectId>
-      <StateNumber>578</StateNumber>
+      <ObjectId>24667</ObjectId>
+      <StateNumber>602</StateNumber>
     </table>
     <column id="21" parent="20" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>569</StateNumber>
+      <StateNumber>582</StateNumber>
       <DefaultExpression>nextval(&apos;palindromedata_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
       <SequenceName>palindromedata_id_seq</SequenceName>
     </column>
     <column id="22" parent="20" name="payload">
       <Position>2</Position>
-      <DataType>jsonb|0s</DataType>
-      <StateNumber>576</StateNumber>
-      <TypeId>3802</TypeId>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>602</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
     <column id="23" parent="20" name="created_timestamp">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>565</StateNumber>
+      <StateNumber>582</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="24" parent="20" name="payloadtext">
-      <Position>4</Position>
-      <DataType>json|0s</DataType>
-      <StateNumber>578</StateNumber>
-      <TypeId>114</TypeId>
-    </column>
-    <index id="25" parent="20" name="palindromedata_id_uindex">
-      <ObjectId>24630</ObjectId>
+    <index id="24" parent="20" name="palindromedata_id_uindex">
+      <ObjectId>24676</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="26" parent="20" name="palindromedata_pkey">
-      <ObjectId>24628</ObjectId>
+    <index id="25" parent="20" name="palindromedata_pkey">
+      <ObjectId>24674</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="27" parent="20" name="palindromedata_pkey">
-      <ObjectId>24629</ObjectId>
+    <key id="26" parent="20" name="palindromedata_pkey">
+      <ObjectId>24675</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>palindromedata_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
