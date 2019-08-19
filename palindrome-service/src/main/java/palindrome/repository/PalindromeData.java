@@ -21,26 +21,25 @@ import javax.persistence.*;
 @Entity
 @Table( name = "palindromedata")
 @AllArgsConstructor
+@NoArgsConstructor
 public class PalindromeData implements Serializable {
 
     private static final int serialVersionUID = 0;
-    @JsonIgnoreProperties
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @JsonInclude
-    @Type(type = "jsonb")
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "payload", columnDefinition = "jsonb")
-    private JSONObject payLoad;
+    @Column(name = "payload")
+    private String payLoad;
 
-    @JsonIgnoreProperties
     @Column(name = "created_timestamp")
     private String createdTimestamp;
 
-    @JsonInclude
+    /*@JsonInclude
     @Column(name = "payloadtext")
-    private String payLoadText;
+    private String payLoadText;*/
 
 }

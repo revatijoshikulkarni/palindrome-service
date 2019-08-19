@@ -12,9 +12,9 @@ import java.io.Serializable;
 @Component
 @ToString
 @Builder
-@Setter @Getter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Palindrome implements Serializable {
 
     @NotNull(message="content is mandatory")
