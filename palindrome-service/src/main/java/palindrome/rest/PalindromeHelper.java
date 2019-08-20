@@ -20,14 +20,10 @@ public class PalindromeHelper {
     public List<Palindrome> getUpdatedPalindromeData(){
         Iterable<PalindromeData> data = repository.findAll();
         List<Palindrome> updatedPalindromeList = new ArrayList<>();
-        //Palindrome palindrome
         data.forEach(palindromeData1 -> {
-            //JSONObject object = palindromeData1.getPayLoad();
             try {
                Palindrome palindrome = new ObjectMapper()
                        .readValue(palindromeData1.getPayLoad(),Palindrome.class);
-                        //.readerFor(Palindrome.class)
-                        //.readValue(palindromeData1.getPayLoad());
                 int longestPalindromeLength = longestPalindromesIn(palindrome.getContent());
                 palindrome.setLength(longestPalindromeLength);
                 updatedPalindromeList.add(palindrome);

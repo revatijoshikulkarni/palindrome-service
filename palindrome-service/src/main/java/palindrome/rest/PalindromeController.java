@@ -46,8 +46,6 @@ public class PalindromeController {
     {
         palindrome.setTimestamp(content.getTimestamp());
         palindrome.setContent(content.getContent());
-        //kafkaApplication.sendKafkaMessage(palindrome);
-        //service.send(palindrome);
         Palindrome palindromeMessage = Palindrome.builder()
                 .content(content.getContent())
                 .timestamp(content.getTimestamp())

@@ -1,6 +1,7 @@
 package palindrome.kafka;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,11 +30,14 @@ public class PalindromeListener {
 
         log.info("Received Palindrome : {}", palindromeMessage);
         log.info(" Saving payload in the database");
-
-        palindromeData.setPayLoad(palindromeMessage.toString());
-       // palindromeData.setPayLoadText(palindromeMessage.toString());
-        palindromeData.setCreatedTimestamp(OffsetDateTime.now().toString());
-        repository.save(palindromeData);
-        log.info("Payload saved");
+       try {
+           palindromeData.setPayLoad(new ObjectMapper()
+                   .writeValueAsString(palindromeMessage));
+           palindromeData.setCreatedTimestamp(OffsetDateTime.now().toString());
+           repository.save(palindromeData);
+           log.info("Payload saved");
+       }catch(Exception e){
+           log.error(" Error in the listener",e.getMessage());
+       }
     }
 }
