@@ -54,8 +54,6 @@ public class PalindromeHelper {
     }
 
     private boolean isPalindrome(String candidate) {
-        // the following is the easy way of reversing a string;
-        // you may use your own code instead if you prefer
         StringBuilder reverse = new StringBuilder(candidate);
         reverse.reverse();
         return candidate.equals(reverse.toString());
