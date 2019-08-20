@@ -23,6 +23,6 @@ public class Palindrome implements Serializable {
     @NotNull(message="timestamp is mandatory")
     private String timestamp;
 
-    private int length;
+    private int longest_palindrome_size;
 
 }

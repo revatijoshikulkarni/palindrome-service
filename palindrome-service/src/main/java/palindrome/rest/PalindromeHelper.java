@@ -25,7 +25,7 @@ public class PalindromeHelper {
                Palindrome palindrome = new ObjectMapper()
                        .readValue(palindromeData1.getPayLoad(),Palindrome.class);
                 int longestPalindromeLength = longestPalindromesIn(palindrome.getContent());
-                palindrome.setLength(longestPalindromeLength);
+                palindrome.setLongest_palindrome_size(longestPalindromeLength);
                 updatedPalindromeList.add(palindrome);
 
             }catch(Exception e){
