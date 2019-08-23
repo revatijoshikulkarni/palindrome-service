@@ -20,16 +20,12 @@ public class PalindromeHelper {
     public List<Palindrome> getUpdatedPalindromeData(){
         Iterable<PalindromeData> data = repository.findAll();
         List<Palindrome> updatedPalindromeList = new ArrayList<>();
-        //Palindrome palindrome
         data.forEach(palindromeData1 -> {
-            //JSONObject object = palindromeData1.getPayLoad();
             try {
                Palindrome palindrome = new ObjectMapper()
                        .readValue(palindromeData1.getPayLoad(),Palindrome.class);
-                        //.readerFor(Palindrome.class)
-                        //.readValue(palindromeData1.getPayLoad());
                 int longestPalindromeLength = longestPalindromesIn(palindrome.getContent());
-                palindrome.setLength(longestPalindromeLength);
+                palindrome.setLongest_palindrome_size(longestPalindromeLength);
                 updatedPalindromeList.add(palindrome);
 
             }catch(Exception e){
@@ -58,8 +54,6 @@ public class PalindromeHelper {
     }
 
     private boolean isPalindrome(String candidate) {
-        // the following is the easy way of reversing a string;
-        // you may use your own code instead if you prefer
         StringBuilder reverse = new StringBuilder(candidate);
         reverse.reverse();
         return candidate.equals(reverse.toString());
