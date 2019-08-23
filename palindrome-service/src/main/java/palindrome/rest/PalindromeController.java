@@ -60,6 +60,7 @@ public class PalindromeController {
             @ApiResponse(code = 200, message = "Successfully retrieved the message"),
             @ApiResponse(code = 400, message = "Invalid request")
     })
+    @CrossOrigin
     @RequestMapping(
             value = "/getenrichedpalindrome",
             method = RequestMethod.GET,
