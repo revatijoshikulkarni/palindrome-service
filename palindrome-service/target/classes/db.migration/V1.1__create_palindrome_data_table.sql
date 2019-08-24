@@ -5,7 +5,7 @@ create table palindromedata
   id                serial  not null
     constraint palindromedata_pkey
     primary key,
-  payload           json,
+  payload           varchar,
   created_timestamp varchar not null
 );
 

@@ -63,7 +63,7 @@ eureka:
 # Actuator info
 info:
   project:
-    name: "palindrome-service"
+    name: "@project.name@"
     description: "Parent pom providing dependency and plugin management for applications
 		built with Maven"
     groupId: "org.springframework"
@@ -71,8 +71,8 @@ info:
     version: "0.1.0"
     owner: Flomdidumteam <Flomdidumteam@tdc.meow>
   build:
-    maven: "3.3.9"
-    time: "2019-08-20T18:18:34Z"
+    maven: "@maven.version@"
+    time: "20190824-1904"
     git:
       commit: "@git.commit.id@"
       describe: "@git.commit.id.describe@"

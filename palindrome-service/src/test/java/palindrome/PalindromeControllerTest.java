@@ -1,21 +1,33 @@
 package palindrome;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.Is;
-import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import palindrome.domain.Palindrome;
+import palindrome.repository.PalindromeData;
+import palindrome.repository.PalindromeDataRepository;
 
 import java.nio.charset.Charset;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,6 +36,9 @@ public class PalindromeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private PalindromeDataRepository repository;
 
     @Test
     public void whenPostRequestValidContent_thenCorrectResponse() throws Exception {
@@ -34,13 +49,7 @@ public class PalindromeControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.post("/palindrome")
                 .content(message)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-               // .andExpect(MockMvcResultMatchers.content().contentType(applicationJsonUtf8));
-
-        JSONObject actual = new JSONObject();
-        actual.put("content", content);
-        actual.put("timestamp", timestamp);
-        JSONAssert.assertEquals(message,actual,false);
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -50,10 +59,41 @@ public class PalindromeControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.post("/palindrome")
                 .content(message)
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Is.is("content is mandatory")))
-                .andExpect(MockMvcResultMatchers.content()
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.content", Is.is("content is mandatory")))
+                .andExpect(content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8));
+    }
+
+    @Test
+    public void serviceShouldReturnAnEnrichedpalindrome() throws Exception {
+
+        String content = "abracadabra";
+        String timestamp = OffsetDateTime.now().toString();
+        final Palindrome expectedPalindrome = Palindrome.builder()
+                .content(content)
+                .timestamp(timestamp)
+                .build();
+
+        PalindromeData data = PalindromeData.builder()
+                .payLoad(new ObjectMapper()
+                        .writeValueAsString(expectedPalindrome))
+                .id(1)
+                .createdTimestamp(timestamp)
+                .build();
+
+        Iterable<PalindromeData> mockRepositoryData = Collections.singletonList(data);
+
+        when(repository.findAll()).thenReturn(mockRepositoryData);
+
+        mockMvc.perform(get("/getenrichedpalindrome"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].content", is(expectedPalindrome.getContent())))
+                .andExpect(jsonPath("$[0].timestamp", is(expectedPalindrome.getTimestamp())))
+                .andExpect(jsonPath("$[0].longest_palindrome_size", is(3)));
+
     }
 
 }
