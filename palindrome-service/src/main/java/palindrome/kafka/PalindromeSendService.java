@@ -20,13 +20,7 @@ public class PalindromeSendService {
 
     public void send(final Palindrome palindromeMessage) {
 
-      //  MessageChannel messageChannel = palindromeStream.outboundMessage();
-
         final Message<Palindrome> message = MessageBuilder.withPayload(palindromeMessage).setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build();
         source.output().send(message);
-       //messageChannel.send(MessageBuilder
-       //         .withPayload(palindromeMessage)
-       //         .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-        //        .build());
     }
 }

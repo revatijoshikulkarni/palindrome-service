@@ -8,7 +8,8 @@ import palindrome.domain.Palindrome;
 import palindrome.repository.PalindromeData;
 import palindrome.repository.PalindromeDataRepository;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Slf4j
 @Component
