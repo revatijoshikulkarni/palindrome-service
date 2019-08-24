@@ -3,7 +3,7 @@ This is a REST API service that produces JSON message which has palindrome strin
 
 ## How to Run this service/application locally on windows10:
 
-# Prerequistes :
+## Prerequistes :
 - Install kafka locally on windows10
 - Docker is installed on windows10
 
