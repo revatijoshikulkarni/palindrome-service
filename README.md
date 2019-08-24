@@ -21,6 +21,7 @@ This is a REST API service that produces JSON message which has palindrome strin
         ~\palindrome-service\palindrome-service\src\main\resources\db.migration\V1.1__create_palindrome_data_table.sql
 
 3. REST Endpoint taking JSON Payload and validating it and publishing it on the kafka topic:
+
             1. Run Application main file in this project in IntelliJ / Eclipse which will start 
             the tomcat server on localhost:8081
             2. Run the endpoint in the POSTMAN using POST request with below details,
@@ -38,20 +39,21 @@ This is a REST API service that produces JSON message which has palindrome strin
                     is missing in the payload. 
 
  4. Rest Enpoint which gives enriched palindrome content with longest palindrome size :
+    You can run this endpoint in POSTMAN using GET request
                 
-                You can run this endpoint in POSTMAN using GET request
-                Request : GET
-                Header : contenttype as application/JSON
-                url : http://localhost:8081/getenrichedpalindrome
-                Reponse :
-                    [
-                        {
-                            "content": "abracadabra",
-                            "timestamp": "2018-10-09 00:12:12+0100",
-                            "longest_palindrome_size": 3
-                        }
-                    ]
+                        Request : GET
+                        Header : contenttype as application/JSON
+                        url : http://localhost:8081/getenrichedpalindrome
+                        Reponse :
+                            [
+                                {
+                                    "content": "abracadabra",
+                                    "timestamp": "2018-10-09 00:12:12+0100",
+                                    "longest_palindrome_size": 3
+                                }
+                            ]
 
 5. Using postgresql
+
             After step2, it will get started postgresql run locally where you can use some client or IntelliJ to configure the database             and run the query to see the payload in the database. 
 
