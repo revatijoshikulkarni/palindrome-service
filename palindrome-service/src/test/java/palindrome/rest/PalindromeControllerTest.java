@@ -1,4 +1,4 @@
-package palindrome;
+package palindrome.rest;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
